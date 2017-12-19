@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<title>歡迎蒞臨中興新村天主堂</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<div class="banner">
+	<div class="banner-info">
+		<h2>歡迎來到中興新村天主堂</h2>
+	</div>
+</div>
+<nav>
+	<div class="navWrapper">
+		<div class="button-collapse">
+			<div class="menuItem">
+				<span class="line line1"></span>
+				<span class="line line1"></span>
+				<span class="line line1"></span>
+			</div>
+		</div>
+		<ul class="menuBar scrollDown">
+			<li><a href="index.html">首頁</a></li>
+			<li><a href="#fathers">歷任司鐸</a></li>
+			<li><a href="#praytime">彌撒時間</a></li>
+			<li><a href="#activities">堂區活動</a></li>
+			<li><a href="#activities">堂區課程</a></li>
+			<li><a href="#contact">聯絡我們</a></li>
+		</ul>
+		<ul class="sideBar">
+			<li><a href="index.html">首頁</a></li>
+			<li><a href="#fathers">歷任司鐸</a></li>
+			<li><a href="#praytime">彌撒時間</a></li>
+			<li><a href="#activities">堂區活動</a></li>
+			<li><a href="#activities">堂區課程</a></li>
+			<li><a href="#contact">聯絡我們</a></li>
+		</ul>	
+	</div>
+</nav>
+
+<section class="fathers" id ="fathers">
+	<div class="row container">
+		<h2>歷任司鐸</h2>
+		<div class="rowgap"></div>
+		<div class="col s12 m6">
+			<h3>現任司鐸</h3>
+			<div class="fathers-img">
+				<img src="img/father2.jpg">
+			</div>
+			<div class="fathers-info">
+				<table>
+					<tr>
+						<td>
+							姓名
+						</td>
+						<td>
+							申烑燮
+						</td>
+					</tr>
+					<tr>
+						<td>
+							國籍
+						</td>
+						<td>
+							韓國
+						</td>
+					</tr>
+					<tr>
+						<td>
+							到任年月
+						</td>
+						<td>
+							2017年
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="col s12 m6">
+			<h3>歷任司鐸</h3>
+			<button class="accordion">幸朝明神父</button>
+			<div class="panel">
+				<p>任職期間：</p>
+			</div>
+			<button class="accordion">xxx神父</button>
+			<div class="panel">
+				<p>任職期間：</p>
+			</div>
+			<button class="accordion">xxx神父</button>
+			<div class="panel">
+				<p>任職期間：</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="praytime" id = "praytime">
+	<div class="row">
+		<h2>彌撒時間</h2>
+		<div class="pray-content col s12">
+			<h3>距離下一次主日彌撒還有</h3>
+			<div class="clock">
+				<div class="column">
+					<span id = "days">00</span>
+				</div>
+				<div class="column">
+					<span id = "hours">00</span>
+				</div>
+				<div class="column">
+					<span id = "minutes">00</span>
+				</div>
+				<div class="column">
+					<span id = "seconds">00</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<script>
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+
+	for (i = 0; i < acc.length; i++) {
+	  acc[i].addEventListener("click", function() {
+	    this.classList.toggle("active");
+	    var panel = this.nextElementSibling;
+	    if (panel.style.maxHeight){
+	      panel.style.maxHeight = null;
+	    } else {
+	      panel.style.maxHeight = panel.scrollHeight + "px";
+	    } 
+	  });
+	}
+</script>
+<script>
+	var countdown = function(end, elements, callback){
+		var _second = 1000,
+			_minute = _second*60,
+			_hour = _minute*60,
+			_day = _hour*24,
+
+			end = new Date(end),
+			timer,
+
+			calculate = function (){
+				var now = new Date(),
+				remaining = end.getTime() - now.getTime(),
+				data;
+
+				if(isNaN(end)) {
+					console.log("Invalid date/time");
+					return;
+				}
+				if(remaining<=0) {
+					clearInterval(timer);
+
+					if(typeof callback === "function") {
+						callback();
+					}
+
+				} else {
+					if (!timer) {
+						timer= setInterval(calculate, _second);
+					}
+				data = 
+				{
+					"days":Math.floor(remaining/_day),
+					"hours":Math.floor((remaining % _day) / _hour),
+					"minutes":Math.floor((remaining % _hour) / _minute),
+					"seconds":Math.floor((remaining % _minute) / _second),
+				}
+
+				if (elements.length){
+					for(x in elements) {
+						var x = elements[x];
+						data[x] = ("00"+data[x]).slice(-2);
+						document.getElementById(x).innerHTML = data[x];
+						}
+					}
+				}
+			};
+		calculate();
+	}
+</script>
+<script>
+	countdown("12/25/2017 09:00:00 AM", ["days", "hours","minutes","seconds"]);
+</script>
+</body>
+</html>
