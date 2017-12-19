@@ -481,11 +481,33 @@ label {
   color: white;
 }
 
+@media only screen and (max-width: 991px) {
+  .timeline h2 {
+    font-size: 40px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .timeline h2 {
+    font-size: 32px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .timeline h2 {
+    font-size: 24px;
+  }
+}
+
 /* experiences CSS end */
 
 
 
 /* contact me start */
+
+.map {
+  height: 350px;
+}
 
 .contact-left {
   background: url(../img/contact2.jpg) no-repeat 0px 0px;
@@ -495,6 +517,7 @@ label {
 }
 
 .contact-left h3 {
+  padding-left: 4em;
   font-size: 1.8em;
   letter-spacing: 2px;
   margin-top: 1.5em;
@@ -502,11 +525,18 @@ label {
   text-transform: uppercase;
 }
 
+.contact-left h5 {
+  font-size: 1em;
+  color: #ababab;
+  letter-spacing: 1px;
+  line-height: 1.9em;
+  padding-left: 7em;
+}
+
 .contact-left p {
   font-size: 1em;
   color: #ababab;
   letter-spacing: 1px;
-  margin-top:20px;
   line-height: 1.9em;
 }
 
@@ -537,7 +567,7 @@ label {
 
 .contact-right {
   background: #eee;
-  height: 100%;
+  height: 430px;
 }
 
 input[type="text"],input[type="email"],input[type="tel"], textarea {
