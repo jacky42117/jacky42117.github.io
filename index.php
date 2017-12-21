@@ -1,3 +1,32 @@
+<?php
+	$msg="";
+	use PHPMailer\PHPMailer\PHPMailer;
+	include_once "PHPMailer/PHPMailer.php";
+	include_once "PHPMailer/Exception.php";
+	include_once "PHPMailer/SMTP.php";
+	if(isset($_POST["submit"])) {
+
+		$name = $_POST["name"];
+		$email = $_POST["email"];
+		$subject = $_POST["subject"];
+		$content = $_POST["content"];
+
+		$mail = new PHPMailer();
+
+		$mail->addAddress("jacky42117@hotmail.com");
+		$mail->setFrom($email);
+		$mail->Subject = $subject;
+		$mail->isHTML(true);
+		$mail->Body = $content;
+
+		if ($mail->send()) 
+			$msg = "Your mail has been sent!";
+		 else 
+			$msg = "Please try again!";
+			//echo $mail->ErrorInfo;
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -271,14 +300,15 @@
 				</div>
 			</div>
 			<div class="col s12 m6 contact-right">
-				<form>
+				<form action="index.php" method="POST"">
 					<input type="text" name="name" placeholder="name">
 					<input type="text" name="subject" placeholder="subject">
 					<input type="email" name="email" placeholder="email">
 					<input type="tel" name="phone" placeholder="phone">
-					<textarea placeholder="your messege"></textarea>
-					<input type="button" name="submit" value="submit">
+					<textarea name="content" placeholder="your messege"></textarea>
+					<input type="submit" name="submit" value="send">
 				</form>
+				<?php if ($msg !="") echo "$msg<br><br>"; ?>
 			</div>
 		</div>
 	</div>
